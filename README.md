@@ -1,1 +1,1 @@
-# MP-Ejercicios-Principios-de-Dise-o
+# Ejercicios Modelos de Programacion
