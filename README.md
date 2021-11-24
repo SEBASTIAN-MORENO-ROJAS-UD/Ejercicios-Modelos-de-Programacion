@@ -1,1 +1,0 @@
-# Ejercicios Modelos de Programacion
