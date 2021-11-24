@@ -49,7 +49,7 @@ public class Punto2D implements Punto{
 
   //Mover en diagonal por separado;
   public void moverDiagonal(){
-		Scanner s = new Scanner(System.in);
+    Scanner s = new Scanner(System.in);
 
     System.out.println("Ingrese la coordenada nueva X del punto");
     float x = s.nextFloat();
@@ -60,7 +60,7 @@ public class Punto2D implements Punto{
     this.moverY(y);
   }
 
-	//Distancia con el origen
+  //Distancia con el origen
   public double distancia(){
 
     return Math.sqrt(Math.pow(this.corX,2) + Math.pow(this.corY,2));
@@ -77,7 +77,7 @@ public class Punto2D implements Punto{
 
   }
 
-	public void leer(){
+  public void leer(){
     Scanner s=new Scanner(System.in);
     System.out.println("Ingrese la coordenada x del punto");
     this.corX=s.nextFloat();
