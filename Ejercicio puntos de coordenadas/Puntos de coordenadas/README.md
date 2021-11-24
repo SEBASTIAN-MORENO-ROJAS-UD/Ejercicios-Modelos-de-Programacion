@@ -12,4 +12,4 @@ En este proyecto se aplicaron los siguientes principios de diseño:
 5. Ley de Demeter
 
 Este proyecto permite ¨manipular¨ puntos en 2D o 3D, como moverlos en los ejes, calcular la distancia entre puntos, así como definir una línea formada entre dos puntos, pudiendo mover la línea moviendo los puntos, conocer la longitud de la línea, entre otras cosas.
-![Diagrama de clases ejercicio MD](https://user-images.githubusercontent.com/72152587/143141496-5b25c48c-ec86-4d2a-81ab-0b7250a091af.png)
+![Diagrama de clases ejercicio principios de diseño](https://user-images.githubusercontent.com/72152587/143287816-35e63d86-6ae4-4987-8c4a-b880aef1e264.png)
