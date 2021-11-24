@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Punto2D implements Punto{
-  protected float corX;
-  protected float corY;
+  private float corX;
+  private float corY;
   
   public Punto2D(){
    corX=0;
