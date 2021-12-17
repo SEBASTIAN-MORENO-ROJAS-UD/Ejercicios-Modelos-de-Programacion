@@ -137,23 +137,28 @@ public class VistaPersonajes extends JFrame {
 
 				pedirPersonajes();
 
-				System.out.println(personajes.get(0).getImagen());
-
 				panelPersonajes.removeAll();
 				panelPersonajes.repaint();
 				
 				for(int i=0; i<cantidad; i++) {
 
-					String url = "Imagenes/Personajes/Guerrero.jpeg";
+					String url = personajes.get(i).getImagen();
 					
-					JLabel imgPersonaje = new JLabel();
-					imgPersonaje.setBounds(0,60,262,125);
-					ImageIcon Icono1 = new ImageIcon(url);
-					//imgPersonaje.setIcon(new ImageIcon(Icono1.getImage().getScaledInstance(etiqueta1.getWidth(), etiqueta1.getHeight(), Image.SCALE_SMOOTH)));
+					try{
+						
+						JLabel imgPersonaje = new JLabel();
+						imgPersonaje.setBounds(0,60,262,125);
+						ImageIcon Icono1 = new ImageIcon(url);
+						imgPersonaje.setIcon(new ImageIcon(Icono1.getImage().getScaledInstance(etiqueta1.getWidth(), etiqueta1.getHeight(), Image.SCALE_SMOOTH)));
 					
-					panelPersonajes.add(imgPersonaje);
-					labelLista.add(imgPersonaje);
-					panelPersonajes.updateUI();
+						panelPersonajes.add(imgPersonaje);
+						labelLista.add(imgPersonaje);
+						panelPersonajes.updateUI();
+					}
+					catch(java.lang.IllegalArgumentException a){
+						
+					}
+
 				}
 
 				try{
