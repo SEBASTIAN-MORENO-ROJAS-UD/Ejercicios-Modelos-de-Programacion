@@ -103,7 +103,7 @@ public class Personaje implements Cloneable {
 
     /**
      * Metodo en el cual se describe el comportamiento del metodo abstracto clone de la interfaz Cloneable
-     * Realiza una deep copy del objeto Personaje y lo retorna
+     * Realiza una shallow copy del objeto Personaje y lo retorna
      * @return Una copia del objeto Personaje
      */
     @Override
