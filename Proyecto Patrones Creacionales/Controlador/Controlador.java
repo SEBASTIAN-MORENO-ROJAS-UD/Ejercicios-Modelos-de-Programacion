@@ -7,8 +7,17 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Esta clase, haciendo uso del Modelo, se encarga de recibir la infoamcion de la Vista acerca del personaje y la cantidad requerida,
+ * modificando la Vista agregando las imagenes e informacion del equipamiento de los personajes, asi como de agregar las imagenes de
+ * los personajes en si
+ * @author Sebastian Moreno Rojas, Juan Esteban Forero Rodriguez, Hanna Valentina Sarmiento Marquez
+ * @version 05/01/2022
+ */
+
 public class Controlador {
     
+    //Campos de la clase
     private static JLabel etiqueta1 = new JLabel();
     private static JLabel etiqueta2 = new JLabel();
     private static JLabel etiqueta3 = new JLabel();
@@ -17,18 +26,28 @@ public class Controlador {
     private static JLabel etiqueta6 = new JLabel();
     private static JLabel etiqueta7 = new JLabel();
     private static JLabel etiqueta8 = new JLabel();
-    
     private static Modelo modelo = new Modelo();;
     private static VistaPersonajes vista = new VistaPersonajes();
     private static ArrayList<Personaje> personajes = new ArrayList<Personaje>();
     private static int cantidad;
     
+    /**
+     * Constructor que crea un objeto de la clase Controlador
+     * @param vista La vista del proyecto en la cual se agregan las imagenes e informacion
+     * @param modelo Objeto de la clase modelo para generar los personajes deseados
+     */
     public Controlador(VistaPersonajes vista, Modelo modelo){
         vista = vista;
         modelo = modelo;   
     }
     
-    public static void pedirPersonajes() throws NumberFormatException, ExepcionPropia{
+    /**
+     * Se recibe de la Vista el personaje y la cantidad deseada, y haciendo uso de esta informacion se le pide al Modelo
+     * dichos personajes, guardandolos en un ArrayList de tipo Personaje
+     * @throws NumberFormatException Si se deja vacio o se ingresan letras en el campo de la cantidad de personajes en la Vista
+     * @throws ExcepcionPropia Si se pide una cantidad de personajes mayor a 15
+     */
+    public static void pedirPersonajes() throws NumberFormatException, ExcepcionPropia{
         
         cantidad = Integer.parseInt(vista.getCantidadPersonajes().getText());
         String opcion = (String) vista.getOpcioncomboBox().getSelectedItem();
@@ -37,11 +56,16 @@ public class Controlador {
             personajes = modelo.generarPersonajes(cantidad, opcion);
         }
         else if(cantidad>15){
-            throw new ExepcionPropia("La cantidad maxima de personajes es de 15");
+            throw new ExcepcionPropia("La cantidad maxima de personajes es de 15");
         }
     }
     
-    public static void generarImagenEquipamiento() throws IndexOutOfBoundsException{
+    /**
+     * Genera JLabels con las imagenes del equipamiento de los personajes, agregandolos a la vista
+     * @throws IndexOutOfBoundsException Si se ingresa cero o un numero negativo en el campo de la cantidad de personajes en la Vista
+     * @throws NullPointerException Si no se encuentran las imagenes de los equipamientos en la ruta especificada dentro del proyecto
+     */
+    public static void generarImagenEquipamiento() throws IndexOutOfBoundsException, NullPointerException{
         
         Personaje personaje = personajes.get(0);
 
@@ -72,7 +96,11 @@ public class Controlador {
         vista.setEtiqueta4(etiqueta4);
     }
     
-    public static void generarInfo() throws IndexOutOfBoundsException{
+    /**
+     * Genera JLabels con las descripciones del equipamiento de los personajes, agregandolos a la vista
+     * @throws IndexOutOfBoundsException Si se ingresa cero o un numero negativo en el campo de la cantidad de personajes en la Vista
+     */
+    public static void generarInfoEquipamiento() throws IndexOutOfBoundsException{
 
         Personaje personaje = personajes.get(0);
 
@@ -92,12 +120,17 @@ public class Controlador {
         vista.setEtiqueta8(etiqueta8);
     }
     
-    public static void generarImagenesPersonaje() throws IllegalArgumentException{
+    /**
+     * Genera JLabels con las imagenes de los personajes, agregandolos directamente al JPanel de los personajes en la Vista
+     * @throws IndexOutOfBoundsException Si se ingresa cero o un numero negativo en el campo de la cantidad de personajes en la Vista
+     * @throws NullPointerException Si no se encuentran las imagenes de los equipamientos en la ruta especificada dentro del proyecto
+     */
+    public static void generarImagenesPersonaje() throws IndexOutOfBoundsException, NullPointerException{
         
         JPanel panelPersonajes = vista.getPanelPersonajes();
         panelPersonajes.removeAll();
         
-        for (int i = 0; i<cantidad; i++) {
+        for (int i = 0; i<cantidad; i++){
 
             String direccion = personajes.get(i).getImagen();
 
@@ -111,12 +144,17 @@ public class Controlador {
         }
     }
     
+    /**
+     * Metodo principal del Controlador
+     * Llama los demas metodos en orden para pedir los personajes al Modelo y agregar a al Vista las imagenes y descripciones del equipamiento de
+     * los personajes, asi como las imagenes de los personajes
+     */
     public static void modificarVista(){
         
         try{
             pedirPersonajes();
             generarImagenEquipamiento();
-            generarInfo();
+            generarInfoEquipamiento();
             vista.addLabels();
             generarImagenesPersonaje();
         }
@@ -128,11 +166,11 @@ public class Controlador {
             JFrame ventanaEmergente = new JFrame();
             JOptionPane.showMessageDialog(ventanaEmergente, "Ingrese un numero mayor a 1");
         }
-        catch(IllegalArgumentException e3){
-            JFrame ventanaEmergente = new JFrame();
-            JOptionPane.showMessageDialog(ventanaEmergente, "Ingrese un numero");
+        catch(NullPointerException e3){
+            e3.printStackTrace();
+            System.out.println("No se encuentra la imagen dentro del proyecto");
         }
-        catch(ExepcionPropia e4){
+        catch(ExcepcionPropia e4){
             JFrame ventanaEmergente = new JFrame();
             JOptionPane.showMessageDialog(ventanaEmergente, e4.getMessage());
         }
