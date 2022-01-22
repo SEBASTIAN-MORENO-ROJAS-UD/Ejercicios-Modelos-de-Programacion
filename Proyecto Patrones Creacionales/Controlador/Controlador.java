@@ -52,10 +52,10 @@ public class Controlador {
         cantidad = Integer.parseInt(vista.getCantidadPersonajes().getText());
         String opcion = (String) vista.getOpcioncomboBox().getSelectedItem();
         
-        if(cantidad<=15){
+        if(cantidad<=20){
             personajes = modelo.generarPersonajes(cantidad, opcion);
         }
-        else if(cantidad>15){
+        else if(cantidad>20){
             throw new ExcepcionPropia("La cantidad maxima de personajes es de 15");
         }
     }
