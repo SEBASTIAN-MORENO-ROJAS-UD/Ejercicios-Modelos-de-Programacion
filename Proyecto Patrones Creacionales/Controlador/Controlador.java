@@ -45,7 +45,7 @@ public class Controlador {
      * Se recibe de la Vista el personaje y la cantidad deseada, y haciendo uso de esta informacion se le pide al Modelo
      * dichos personajes, guardandolos en un ArrayList de tipo Personaje
      * @throws NumberFormatException Si se deja vacio o se ingresan letras en el campo de la cantidad de personajes en la Vista
-     * @throws ExcepcionPropia Si se pide una cantidad de personajes mayor a 15
+     * @throws ExcepcionPropia Si se pide una cantidad de personajes mayor a 20
      */
     public static void pedirPersonajes() throws NumberFormatException, ExcepcionPropia{
         
@@ -56,7 +56,7 @@ public class Controlador {
             personajes = modelo.generarPersonajes(cantidad, opcion);
         }
         else if(cantidad>20){
-            throw new ExcepcionPropia("La cantidad maxima de personajes es de 15");
+            throw new ExcepcionPropia("La cantidad maxima de personajes es de 20");
         }
     }
     
